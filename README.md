@@ -38,7 +38,6 @@ The following **additional** features are implemented:
 - Libraries, Frameworks, Languages used: 
 - ReactJs : 17.0.2
 - Typescript: 4.9.5
-- SCSS
 - Ant Design: 5.3.3
 - Context: 3.0.5
 - React-router-dom: 5.3.3
@@ -49,17 +48,20 @@ The following **additional** features are implemented:
 Here's a walkthrough of implemented user stories:
 
 > Please record screen to a GIF file and attach link here
+Link to gif file: https://giphy.com/gifs/FmXceL81znX0EwYR5j 
 
 ## Submit
 
 **When you're done, send us back a link to a repository with your source code, with a description of what you've done and any build instructions in the readme!**
 
-Instructions: 
+## Instructions: 
 - Run "npm install"
 - You can start the application with "npm start" the application will run on "http://localhost:3000"
-- To make API requests, API_KEY should be added to src/config/dev.ts, it will be provided through email
+- To make API requests, API_KEY should be added to src/config/dev.ts
+- Use the API_KEY in .env file
 
 To build the project: 
+- Add API_KEY from .env file to src/config/prod.ts
 - Run "npm run build"
 - Run "npm install -g serve"
 - Run "serve -s build"
