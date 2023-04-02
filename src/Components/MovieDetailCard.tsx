@@ -14,7 +14,7 @@ const MovieDetailCard = ({ movie, isLoading }: MovieDetailCardProps) => {
         <Card className="movie-card-wrapper">
           <div className="movie-card-content">
             <div className="movie-card-image">
-              <MyImage 
+              <MyImage
                 src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
                 alt={movie.tagline}
               />

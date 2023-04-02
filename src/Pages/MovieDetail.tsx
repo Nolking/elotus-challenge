@@ -22,7 +22,7 @@ const MovieDetail = function () {
       );
       const [res1, res2] = await Promise.all([fetchDetail, fetchSimilar]);
       setTimeout(() => {
-        if (res1.success === false) {
+        if (res1.success === false || res2.success === false) {
           setErrorMessage(res1.status_message);
           setIsLoading(false);
         } else {
@@ -47,7 +47,11 @@ const MovieDetail = function () {
         )}
       </React.Fragment>
       <MovieDetailCard movie={movie} isLoading={isLoading}></MovieDetailCard>
-      <MovieList title="Similar Movies" grid={true} isSimilar={true}></MovieList>
+      <MovieList
+        title="Similar Movies"
+        grid={true}
+        isSimilar={true}
+      ></MovieList>
     </PageWrapper>
   );
 };

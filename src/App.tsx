@@ -7,7 +7,14 @@ function App() {
   const [movies, setMovies] = useState<TMovie[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [similarMovies, setSimilarMovies] = useState<TMovie[]>([]);
-  const value = { movies, setMovies, isLoading, setIsLoading, similarMovies, setSimilarMovies}
+  const value = {
+    movies,
+    setMovies,
+    isLoading,
+    setIsLoading,
+    similarMovies,
+    setSimilarMovies,
+  };
   return (
     <MovieContext.Provider value={value}>
       <div className="App">

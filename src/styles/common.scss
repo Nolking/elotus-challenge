@@ -77,10 +77,13 @@ $base-screen-width: 1280px;
     .movie-list-item {
       position: relative !important;
       left: calc(50vw - 430px) !important;
-      .ant-skeleton {float: left; max-width: 800px;
-        +.ant-skeleton {margin-left: 20px;}
+      .ant-skeleton {
+        float: left;
+        max-width: 800px;
+        + .ant-skeleton {
+          margin-left: 20px;
+        }
       }
-
     }
     .movie-list-details {
       p:nth-child(2) {
@@ -102,9 +105,17 @@ $base-screen-width: 1280px;
 }
 
 @media (min-width: 1500px) {
-  span {font-size: 16px;}
-  .grid-view, .movie-card-details {
-    h3, h3 a { font-size: 25px !important;}
-    p { font-size: 16px !important; }
+  span {
+    font-size: 16px;
+  }
+  .grid-view,
+  .movie-card-details {
+    h3,
+    h3 a {
+      font-size: 25px !important;
+    }
+    p {
+      font-size: 16px !important;
+    }
   }
 }

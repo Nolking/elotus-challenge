@@ -31,21 +31,24 @@ const SearchBar = () => {
     if (response.success === false) {
       setErrorMessage(response.status_message);
     } else {
-        setMovies(response.results);
-        let result = movies.filter((item: TMovie) =>
-          item.title.toLowerCase().includes(e.target.value.toLowerCase())
-        );
-        if (e.target.value === "") {
-          setFilteredMovies([]);
-        } else {
-          setFilteredMovies(result);
-        }
+      setMovies(response.results);
+      let result = movies.filter((item: TMovie) =>
+        item.title.toLowerCase().includes(e.target.value.toLowerCase())
+      );
+      if (e.target.value === "") {
+        setFilteredMovies([]);
+      } else {
+        setFilteredMovies(result);
+      }
     }
   };
   return (
     <React.Fragment>
       <div className="search-bar-wrapper">
-        <Input onChange={handleInput} placeholder="Search now playing movies"></Input>
+        <Input
+          onChange={handleInput}
+          placeholder="Search now playing movies"
+        ></Input>
         {errorMessage.length > 0 && <p>{errorMessage}</p>}
         {filteredMovies.length > 0 && (
           <div ref={ref}>
