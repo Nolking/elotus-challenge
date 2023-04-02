@@ -7,4 +7,6 @@ export const MovieContext = createContext({
     setMovies: (movies: TMovie[]) => {},
     isLoading: true,
     setIsLoading: (isLoading: boolean) => {},
+    similarMovies: [] as TMovie[],
+    setSimilarMovies: (similarMovies: TMovie[]) => {}
 });

@@ -10,7 +10,7 @@ import MovieList from "../Components/MovieList";
 const MovieDetail = function () {
   const { id } = useParams();
   const [errorMessage, setErrorMessage] = useState<string>("" as string);
-  const { setMovies } = useContext(MovieContext);
+  const { setMovies, setSimilarMovies } = useContext(MovieContext);
   const [movie, setMovie] = useState<TMovieDetail>({} as TMovieDetail);
   const { isLoading, setIsLoading } = useContext(MovieContext);
   const getMovieDetail = async () => {
@@ -27,7 +27,7 @@ const MovieDetail = function () {
           setIsLoading(false);
         } else {
           setMovie(res1);
-          setMovies(res2.results.slice(0, 5));
+          setSimilarMovies(res2.results.slice(0, 5));
           setErrorMessage("");
           setIsLoading(false);
         }
@@ -47,7 +47,7 @@ const MovieDetail = function () {
         )}
       </React.Fragment>
       <MovieDetailCard movie={movie} isLoading={isLoading}></MovieDetailCard>
-      <MovieList title="Similar Movies" grid={true}></MovieList>
+      <MovieList title="Similar Movies" grid={true} isSimilar={true}></MovieList>
     </PageWrapper>
   );
 };

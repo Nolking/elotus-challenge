@@ -9,9 +9,10 @@ type MovieListProps = {
   configSpace?: boolean;
   title?: string;
   grid?: boolean;
+  isSimilar?: boolean;
 };
-const MovieList = ({ configSpace, title, grid }: MovieListProps) => {
-  const { movies, setMovies, isLoading, setIsLoading } =
+const MovieList = ({ configSpace, title, grid, isSimilar }: MovieListProps) => {
+  const { movies, setMovies, isLoading, setIsLoading, similarMovies, setSimilarMovies } =
     useContext(MovieContext);
   const [selected, setSelected] = useState(true);
   const [gridView, setGridView] = useState(grid ? grid : false);
@@ -89,7 +90,7 @@ const MovieList = ({ configSpace, title, grid }: MovieListProps) => {
             <List
               grid={{ gutter: 16, column: 5 }}
               className={"movie-list-content grid-view"}
-              dataSource={movies}
+              dataSource={isSimilar ? similarMovies: movies}
               renderItem={(item) => (
                 <List.Item className="movie-list-item">
                   <MyImage
