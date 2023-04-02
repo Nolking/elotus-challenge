@@ -1,15 +1,18 @@
-import React from 'react';
-import Header from './Components/Header';
-import Footer from './Components/Footer';
-import MainRoutes from './Components/Routes'
+import { useState } from "react";
+import TMovie from "./utils/types";
+import { MovieContext } from "./Context/movieContext";
+import MainRoutes from "./Routes";
 
 function App() {
+  const [movies, setMovies] = useState<TMovie[]>([]);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
+  const value = { movies, setMovies, isLoading, setIsLoading}
   return (
-    <div className="App">
-      <Header></Header>
-      <MainRoutes></MainRoutes>
-      <Footer></Footer>
-    </div>
+    <MovieContext.Provider value={value}>
+      <div className="App">
+        <MainRoutes></MainRoutes>
+      </div>
+    </MovieContext.Provider>
   );
 }
 

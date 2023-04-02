@@ -1,35 +1,110 @@
+@import url("./layout.scss");
+@import url("./components.scss");
+
+$base-screen-width: 1280px;
+@function get-vw($target) {
+  $vw-context: (1000 * 0.01) * 1px;
+  @return ($target/$vw-context) * 1vw;
+}
+
 .App {
-    text-align: center;
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
   }
-  
-  .App-logo {
-    height: 40vmin;
-    pointer-events: none;
+  to {
+    transform: rotate(360deg);
   }
-  
-  .App-header {
-    background-color: #282c34;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    font-size: calc(10px + 2vmin);
-    color: white;
+}
+.test {
+  background: url("../../public/images/App_Logo.svg") no-repeat center;
+  display: block;
+  height: 200px;
+}
+
+// animation
+@keyframes fadeIn {
+  from {
+    opacity: 0;
   }
-  
-  .App-link {
-    color: #61dafb;
+  to {
+    opacity: 1;
   }
-  
-  @keyframes App-logo-spin {
-    from {
-      transform: rotate(0deg);
+}
+.fade-in {
+  animation: fadeIn 5s;
+}
+
+// image
+.ant-image[variant="myImage"] {
+  width: get-vw(180px);
+}
+.movie-list-content {
+  &.grid-view {
+    .movie-list-details {
+      display: inline-block;
+      left: get-vw(6px);
+      position: absolute;
+      bottom: 0;
+      background: rgb(0, 0, 0, 0.3);
+      width: get-vw(180px) !important;
     }
-    to {
-      transform: rotate(360deg);
+  }
+  &.list-view {
+    .movie-list-item {
+      position: relative !important;
+      left: calc(50vw - 430px) !important;
+      .ant-skeleton {float: left; max-width: 800px;
+        +.ant-skeleton {margin-left: 20px;}
+      }
+
+    }
+    .movie-list-details {
+      p:nth-child(2) {
+        margin: 0;
+        font-size: 12px;
+        margin-bottom: 10px;
+        height: 20px;
+        text-align: left;
+      }
+      p:last-child {
+        height: 30px;
+        width: calc(100% - 20px);
+        white-space: pre-line;
+        font-size: 12px;
+        margin: 0 !important;
+      }
     }
   }
-  .test {
-    background: url("../../public/images/App_Logo.svg") no-repeat center; display: block; height: 200px;
+}
+
+@media (min-width: 1500px) {
+  span {font-size: 16px;}
+  .grid-view, .movie-card-details {
+    h3, h3 a { font-size: 25px !important;}
+    p { font-size: 16px !important; }
   }
+}

@@ -1,9 +1,17 @@
 $light : #FFFFFF;
+.col-light { color: $light; }
 $primary-300: #FFCC21;
+.col-prim-300 { color: $primary-300; }
 $primary-400: #FF963C;
+.col-prim-400 { color: $primary-400; }
 $primary-500: #EA6C00;
+.col-prim-500 { color: $primary-500; }
 $secondary-300: #8FE9D0;
+.col-sec-300 { color: $secondary-300; }
 
 $dark-600: #2E2E2E;
+.col-dark-600 { color: $dark-600; }
 $dark-500: #414141;
+.col-dark-500 { color: $dark-500; }
 $gray-400: #777777;
+.col-gray-400 { color: $gray-400; }
