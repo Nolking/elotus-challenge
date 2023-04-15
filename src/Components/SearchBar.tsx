@@ -1,14 +1,15 @@
-import React, { useState, useRef, useEffect, useContext } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { Image, Input, List } from "antd";
-import { MovieContext } from "../Context/movieContext";
 import TMovie from "../utils/types";
 import { Link } from "react-router-dom";
-import fetchData from "../utils/fetchData";
+import useMovie from "../Context/movieContext";
 
 const SearchBar = () => {
-  const { movies, setMovies } = useContext(MovieContext);
+  const { state, setIsLoading, getNowPlayingMovies } = useMovie();
   const [filteredMovies, setFilteredMovies] = useState<TMovie[]>([]);
-  const [errorMessage, setErrorMessage] = useState<string>("");
+  const [errorMessage] = useState<string>("");
+
+  const { movies } = state;
   const ref = useRef(null);
   useOutsideAlerter(ref);
   function useOutsideAlerter(ref: any) {
@@ -27,20 +28,16 @@ const SearchBar = () => {
 
   const handleInput = async (e: any) => {
     e.preventDefault();
-    const response = await fetchData("now_playing").then((res) => res.json());
-    if (response.success === false) {
-      setErrorMessage(response.status_message);
+    getNowPlayingMovies();
+    let result = movies.filter((item: TMovie) =>
+      item.title.toLowerCase().includes(e.target.value.toLowerCase())
+    );
+    if (e.target.value === "") {
+      setFilteredMovies([]);
     } else {
-      setMovies(response.results);
-      let result = movies.filter((item: TMovie) =>
-        item.title.toLowerCase().includes(e.target.value.toLowerCase())
-      );
-      if (e.target.value === "") {
-        setFilteredMovies([]);
-      } else {
-        setFilteredMovies(result);
-      }
+      setFilteredMovies(result);
     }
+    // }
   };
   return (
     <React.Fragment>

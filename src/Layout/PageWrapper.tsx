@@ -2,7 +2,6 @@ import React from "react";
 import Header from "./Header";
 import Footer from "./Footer";
 
-
 type PageWrapperProps = {
   children: React.ReactChild | React.ReactChild[];
 };

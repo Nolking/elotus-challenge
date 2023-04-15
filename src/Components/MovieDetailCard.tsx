@@ -1,13 +1,11 @@
 import React from "react";
 import { Card, Skeleton } from "antd";
-import { TMovieDetail } from "../utils/types";
 import MyImage from "./MyImage";
+import useMovie from "../Context/movieContext";
 
-type MovieDetailCardProps = {
-  movie: TMovieDetail;
-  isLoading: boolean;
-};
-const MovieDetailCard = ({ movie, isLoading }: MovieDetailCardProps) => {
+const MovieDetailCard = () => {
+  const { state } = useMovie();
+  const { movieDetail, isLoading } = state;
   if (!isLoading) {
     return (
       <React.Fragment>
@@ -15,23 +13,23 @@ const MovieDetailCard = ({ movie, isLoading }: MovieDetailCardProps) => {
           <div className="movie-card-content">
             <div className="movie-card-image">
               <MyImage
-                src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
-                alt={movie.tagline}
+                src={`https://image.tmdb.org/t/p/w500${movieDetail.poster_path}`}
+                alt={movieDetail.tagline}
               />
             </div>
             <div className="movie-card-details">
-              <h3>{movie.title}</h3>
+              <h3>{movieDetail.title}</h3>
               <p>
                 <b>Release date: </b>
-                {movie.release_date}
+                {movieDetail.release_date}
               </p>
               <p>
-                <b>IMDB: </b> {movie.vote_average}
+                <b>IMDB: </b> {movieDetail.vote_average}
               </p>
               <p>
-                <b>Runtime: </b> {movie.runtime} minutes
+                <b>Runtime: </b> {movieDetail.runtime} minutes
               </p>
-              <p>{movie.overview}</p>
+              <p>{movieDetail.overview}</p>
             </div>
           </div>
         </Card>

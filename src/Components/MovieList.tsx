@@ -1,9 +1,11 @@
 import React, { useState, useEffect, useContext } from "react";
 import { List, Button, Switch, Skeleton } from "antd";
+import { useParams } from "react-router-dom";
 import { MovieContext } from "../Context/movieContext";
 import fetchData from "../utils/fetchData";
 import { Link } from "react-router-dom";
 import MyImage from "./MyImage";
+import useMovie from "../Context/movieContext";
 
 type MovieListProps = {
   configSpace?: boolean;
@@ -12,8 +14,16 @@ type MovieListProps = {
   isSimilar?: boolean;
 };
 const MovieList = ({ configSpace, title, grid, isSimilar }: MovieListProps) => {
-  const { movies, setMovies, isLoading, setIsLoading, similarMovies } =
-    useContext(MovieContext);
+  const {
+    state,
+    setIsLoading,
+    getNowPlayingMovies,
+    getTopRatedMovies,
+    getSimilarMovies,
+  } = useMovie();
+  const { id } = useParams();
+
+  const { movies, isLoading, similarMovies } = state;
   const [selected, setSelected] = useState(true);
   const [gridView, setGridView] = useState(grid ? grid : false);
   const switchView = () => {
@@ -22,31 +32,18 @@ const MovieList = ({ configSpace, title, grid, isSimilar }: MovieListProps) => {
 
   const handleList = (dataType: string) => {
     try {
-      setIsLoading(true);
-      setTimeout(async () => {
-        const response = await fetchData(dataType).then((res) => res.json());
-        setMovies(response.results);
-        setIsLoading(false);
-      }, 500);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  const getNowPlayingMovies = async () => {
-    try {
-      const response = await fetchData("now_playing").then((res) => res.json());
-      setTimeout(() => {
-        setMovies(response.results);
-        setIsLoading(false);
-      }, 500);
+      setIsLoading();
+      if (dataType === "now_playing") getNowPlayingMovies();
+      else if (dataType === "top_rated") getTopRatedMovies();
+      else if (dataType === "similar_movies" && id) getSimilarMovies(id);
     } catch (error) {
       console.log(error);
     }
   };
   useEffect(() => {
     getNowPlayingMovies();
-  }, []);
+    if (id) getSimilarMovies(id);
+  }, [id]);
   if (!isLoading) {
     return (
       <React.Fragment>
